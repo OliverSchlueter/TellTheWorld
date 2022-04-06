@@ -1,4 +1,9 @@
 Tell The World
 
-Send messages to the world. Likes others messages. Resend others messages. Comment others messages.
+Send messages to the world. Likes others messages. Comment others messages.
 Chat with users. Follow other users and get a notification if they sent a message.
+
+
+Main attributes
+- User(tag/id, timestamp joined, profile picture, nickname, email, birth date, followers, following, about me text)
+- Message(id, timestamp sent, user who sent, content, likes, comments)
