@@ -29,7 +29,7 @@ class User:
                 "about_me": self.about_me, "profile_picture": self.profile_picture}
 
 
-def get_from_database(tag: str):
+def get_user_from_database(tag: str):
     res = database.db.collections["users"].find_one({"tag": tag})
     if res is None:
         return None
