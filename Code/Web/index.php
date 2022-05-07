@@ -11,8 +11,8 @@
 </head>
 <body>
 
-    <div class="sidebar">
-        <!-- <i class="hide_arrows fa-solid fa-angles-left"></i> -->
+    <div id="sidebar">
+        <i id="hide_arrows" class="fa-solid fa-angles-left" onclick="hide_sidebar()"></i>
         <p class="headline">Navigation</p>
         <ul>
             <li><a href="">Start</a></li>
