@@ -6,15 +6,16 @@
     left: 0px;
     transform: translate(0, -50%);
     overflow: hidden;
-    padding: 7px;
-    padding-right: 30px;
-    background-color: var(--background-color3);
+    padding: 10px 30px 10px 10px;
+    max-height: auto;
+    background-color: var(--background-color2);
+    overflow: hidden;
 
     box-shadow: rgba(114, 45, 45, 0.589) 0px 0px 20px 6px;
 
-    /* border-right: 2px solid var(--color-light-red);
+    border-right: 2px solid var(--color-light-red);
     border-top: 2px solid var(--color-light-red);
-    border-bottom: 2px solid var(--color-light-red); */
+    border-bottom: 2px solid var(--color-light-red);
 
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -22,7 +23,8 @@
 }
 
 #sidebar.hidden{
-    transform: translate(-80%, -50%);
+    transform: translate(-84%, -50%);
+    height: 150px;
 }
 
 #sidebar .headline{
@@ -37,6 +39,11 @@
     right: 10px;
     cursor: pointer;
     color: var(--color-light-red);
+    transition: all .2s ease-in-out;
+}
+
+#sidebar #hide_arrows:hover{
+    color: var(--color-red);
 }
 
 #sidebar #hide_arrows.hidden{
@@ -54,9 +61,11 @@
 }
 
 #sidebar li a{
+    cursor: pointer;
+    color: var(--foreground-color-gray);
     transition: all .2s ease-in-out;
 }
 
 #sidebar li a:hover{
-    color: var(--color-orange);
+    color: var(--foreground-color);
 }

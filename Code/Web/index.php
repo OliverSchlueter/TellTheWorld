@@ -11,14 +11,19 @@
 </head>
 <body>
 
-    <div id="sidebar">
-        <i id="hide_arrows" class="fa-solid fa-angles-left" onclick="hide_sidebar()"></i>
+    <div id="sidebar" class="hidden">
+        <i id="hide_arrows" class="hidden fa-solid fa-angles-left" onclick="hide_sidebar()"></i>
         <p class="headline">Navigation</p>
         <ul>
-            <li><a href="">Start</a></li>
-            <li><a href="">Über TTW</a></li>
-            <li><a href="">Werte</a></li>
-            <li><a href="">API</a></li>
+            <li><a onclick="scroll_top()">Overview</a></li>
+            <li><a onclick="scroll_to('about_section')"">About TTW</a></li>
+            <li><a onclick="scroll_to('values_section')">Our Values</a></li>
+            <li><a onclick="scroll_to('api_section')">How to - API</a></li>
+            <hr>
+            <li><a href="login/">Login</a></li>
+            <li><a href="register/">Register</a></li>
+            <li><a href="web/">Open in web</a></li>
+            <li><a href="share/">Share</a></li>
         </ul>
     </div>
 
@@ -34,7 +39,7 @@
         <p class="scroll_down" onclick="scroll_down()">&#5167;</p>
     </header>
 
-    <section>
+    <section id="about_section">
         <h1>Über TellTheWorld</h1>
         <p class="block_text center_text">
             TellTheWorld ist ein Kurznachrichtendienst entwickelt in Rahmen eines Freizeitprojekts von Oliver Schlüter.<br>
@@ -42,14 +47,14 @@
         </p>
     </section>
 
-    <section class="highlight">
+    <section id="values_section" class="highlight">
         <h1>Werte</h1>
         <p class="block_text center_text">
             Wir legen sehr viel Wert auf Datensicherheit und Vertraulichkeit. Daher sind alle Algorithmen open source und öffentlich einsehbar.
         </p>
     </section>
 
-    <section>
+    <section id="api_section">
         <h1>API</h1>
         <p class="block_text">
             Du bist Entwickler und möchtest coole Projekte mit der TellTheWorld-Platform schaffen? Nutze doch gerne unsere API! Eine Dokumentation findest du hier: [link]
