@@ -29,7 +29,8 @@ body{
 header{
     min-height: 100vh;
     margin-bottom: 200px;
-    border-bottom: var(--color-red) 1px solid;
+    border-bottom: var(--color-red) 2px solid;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55) 73%, rgba(252, 57, 3, 0.45) 100%);
 }
 
 h1, h2, h3{

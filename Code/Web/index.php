@@ -16,13 +16,13 @@
         <p class="headline">Navigation</p>
         <ul>
             <li><a onclick="scroll_top()">Overview</a></li>
-            <li><a onclick="scroll_to('about_section')"">About TTW</a></li>
-            <li><a onclick="scroll_to('values_section')">Our Values</a></li>
+            <li><a onclick="scroll_to('about_section')">About TTW</a></li>
+            <li><a onclick="scroll_to('values_section')">Our values</a></li>
             <li><a onclick="scroll_to('api_section')">How to - API</a></li>
             <hr>
             <li><a href="login/">Login</a></li>
             <li><a href="register/">Register</a></li>
-            <li><a href="web/">Open in web</a></li>
+            <li><a href="web/">Start now</a></li>
             <li><a href="share/">Share</a></li>
         </ul>
     </div>
@@ -40,22 +40,22 @@
     </header>
 
     <section id="about_section">
-        <h1>Über TellTheWorld</h1>
+        <h1>About TellTheWorld</h1>
         <p class="block_text center_text">
-            TellTheWorld ist ein Kurznachrichtendienst entwickelt in Rahmen eines Freizeitprojekts von Oliver Schlüter.<br>
-            Hier hast Du die Möglichkeit Deine Meinung und Gedanken zu einen Thema öffentlich zu posten. Du kannst dir andere Posts ansehen, liken und kommentieren.
+            TellTheWorld ist a short message service developed by Oliver Schlüter in his freetime.<br>
+            Here you can share your thoughts with the world, like and comment other messages. You can also follow other people and send them private messages.
         </p>
     </section>
 
     <section id="values_section" class="highlight">
-        <h1>Werte</h1>
+        <h1>Our values</h1>
         <p class="block_text center_text">
             Wir legen sehr viel Wert auf Datensicherheit und Vertraulichkeit. Daher sind alle Algorithmen open source und öffentlich einsehbar.
         </p>
     </section>
 
     <section id="api_section">
-        <h1>API</h1>
+        <h1>How to - API</h1>
         <p class="block_text">
             Du bist Entwickler und möchtest coole Projekte mit der TellTheWorld-Platform schaffen? Nutze doch gerne unsere API! Eine Dokumentation findest du hier: [link]
         </p>

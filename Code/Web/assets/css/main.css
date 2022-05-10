@@ -2,7 +2,7 @@
     padding-top: 10%;
     margin-top: 0;
     font-weight: 800;
-    font-size: 100px;
+    font-size: 150px;
     text-align: center;
     color: var(--color-red);
     text-shadow: 0 2px 2px #dda0a0, 
@@ -17,9 +17,11 @@
 
 #subline{
     text-align: center;
-    color: var(--color-red);
+    /* color: var(--color-red); */
+    color: var(--background-color);
     filter: brightness(60%);
     font-weight: 600;
-    font-size: 40px;
+    font-size: 50px;
     margin: 20px 0px;
+    text-shadow: 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red);
 }
