@@ -14,6 +14,8 @@
     --color-red: rgb(197, 36, 36);
     --color-light-red: rgb(196, 69, 69);
     --color-orange: rgb(197, 87, 36);
+    --color-green: rgb(36, 197, 36);
+    --color-light-green: rgb(69, 196, 69);
 }
 
 body{
@@ -43,7 +45,8 @@ p{
 
 a{
     text-decoration: none;
-    color: var(--foreground-color);
+    /* color: var(--foreground-color); */
+    color: inherit;
 }
 
 h1{
@@ -63,6 +66,11 @@ h1{
 .center_items{
     display: flex;
     justify-content: center;
+}
+
+.center_self{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button{
@@ -145,4 +153,87 @@ section.highlight{
 section p{
     max-width: 80%;
     margin: 0 auto;
+}
+
+/*
+    FORMS
+*/
+
+form{
+    background-color: var(--background-color2);
+    padding: 50px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+form h1{
+    margin: 0;
+    transform: translateY(-30px);
+}
+
+.form_item{
+    display: grid;
+    margin: 10px;
+    width: 300px;
+}
+
+.form_item.full_width{
+    width: auto;
+}
+
+.form_item p{
+    margin: 0;
+    color: var(--foreground-color-gray);
+    transform: translateY(50%);
+}
+
+input{
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--foreground-color);
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 5px 10px;
+    height: min-content;
+    transition: all .2s ease-in-out;
+}
+
+input[type="submit"]{
+    color: var(--foreground-color-gray);
+    cursor: pointer;
+    margin: 10px;
+    margin-top: 50px;
+    box-shadow: var(--color-light-red) 0px 0px 7px 0px;
+}
+
+input:focus, input:hover{
+    border: 1px var(--color-light-red) solid;
+}
+
+input[type="submit"]:hover{
+    border: 1px solid transparent;
+    box-shadow: var(--color-red) 0px 0px 12px 0px;
+}
+
+input::-webkit-calendar-picker-indicator {
+    filter: invert(0.7);
+    cursor: pointer;
+}
+
+label{
+    color: var(--color-red);
+    font-size: calc(var(--font-size) * 0.7);
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom_file_upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    height: min-content;
+    transform: translateY(250%);
 }

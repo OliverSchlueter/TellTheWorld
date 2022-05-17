@@ -31,10 +31,10 @@
         <h1 id="headline">TELL THE WORLD</h1>
         <h1 id="subline">Share your thoughts</h1>
         <div class="center_items">
-            <button><i class="fa-solid fa-user fa-xs"></i> LOGIN</button>
-            <button><i class="fa-solid fa-user-plus fa-xs"></i> REGISTER</button>
-            <button><i class="fa-solid fa-circle-play fa-xs"></i> START</button>
-            <button><i class="fa-solid fa-share-from-square fa-xs"></i> SHARE</button>
+            <a href="login/"><button><i class="fa-solid fa-user fa-xs"></i> LOGIN</button></a>
+            <a href="register/"><button><i class="fa-solid fa-user-plus fa-xs"></i> REGISTER</button></a>
+            <a href="web/"><button><i class="fa-solid fa-circle-play fa-xs"></i> START</button></a>
+            <a href="share/"><button><i class="fa-solid fa-share-from-square fa-xs"></i> SHARE</button></a>
         </div>
         <p class="scroll_down" onclick="scroll_down()">&#5167;</p>
     </header>
