@@ -9,6 +9,7 @@
     <title>Tell The World - Register</title>
 </head>
 <body>
+    <a href="../" class="back_to_main_page_btn"><i class="fa-solid fa-house"></i></a>
     <header>
         <main>
             <form action="" method="post" class="center_self">
@@ -45,7 +46,7 @@
                 <div class="center_items">
                     <div class="form_item">
                         <label for="register_password">PASSWORD*</label>
-                        <input type="password" name="register_password" id="register_password" minlength="8" maxlength="512" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required>
+                        <input type="password" name="register_password" id="register_password" minlength="8" maxlength="512" placeholder="secure_password" required>
                     </div>
                     <div class="form_item">
                         <p id="pasword_feedback">Not long enough</p>

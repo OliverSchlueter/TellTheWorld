@@ -3,8 +3,10 @@ body{
 }
 
 header{
-    min-height: calc(100vh - 3px);
+    /* min-height: calc(100vh - 3px); */
+    min-height: 100vh;
     margin-bottom: 0px;
+    border-bottom: none;
 }
 
 #profile_picture{
@@ -12,6 +14,7 @@ header{
     height: 100px;
     border-radius: 50%;
     margin-bottom: 20px;
+    box-shadow: 0px 0px 10px 3px var(--color-red);
 }
 
 main{
@@ -29,4 +32,9 @@ main{
 @keyframes header_slide_in_animation {
     0% { transform: translate(-50%, -200%); }
     100%{ transform: translate(-50%, -50%); }
+}
+
+.custom_file_upload{
+    position: absolute;
+    top: 23%;
 }
