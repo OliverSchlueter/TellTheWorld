@@ -38,3 +38,28 @@ main{
     position: absolute;
     top: 23%;
 }
+
+.forgot_password{
+    padding-top: 5px;
+}
+
+.forgot_password, .label_checkbox{
+    color: var(--color-light-red);
+    font-size: calc(var(--font-size) * 0.8);
+    transition: color .2s ease-in-out;
+}
+
+.forgot_password:hover{
+    color: var(--color-red);
+}
+
+.login_extras{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login_extras:last-child{
+    float: right;
+    vertical-align: baseline;
+}

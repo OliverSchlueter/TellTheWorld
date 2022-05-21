@@ -198,7 +198,7 @@ form h1{
 }
 
 .form_item.full_width{
-    width: auto;
+    width: 100%;
 }
 
 .form_item p{
