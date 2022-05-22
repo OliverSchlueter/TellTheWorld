@@ -208,7 +208,7 @@ form h1{
     transform: translateY(50%);
 }
 
-input{
+input, textarea{
     background-color: var(--background-color);
     font-family: var(--font-family);
     font-size: var(--font-size);
@@ -219,6 +219,10 @@ input{
     padding: 5px 10px;
     height: min-content;
     transition: all .2s ease-in-out;
+}
+
+textarea{
+    resize: none;
 }
 
 input[type="submit"]{
@@ -262,5 +266,5 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     height: min-content;
-    transform: translateY(250%);
+    transform: translateY(180%);
 }

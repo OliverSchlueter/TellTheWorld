@@ -12,7 +12,7 @@
     <a href="../" class="back_to_main_page_btn"><i class="fa-solid fa-house"></i></a>
     <header>
         <main>
-            <form action="" method="post" class="center_self">
+            <form action="register.php" method="post" class="center_self" enctype="multipart/form-data">
                 <h1>Create an account</h1>
                 <div class="center_items">
                     <img id="profile_picture" src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="">
@@ -44,6 +44,12 @@
                     </div>
                 </div>
                 <div class="center_items">
+                    <div class="form_item full_width">
+                        <label for="register_about_me" id="register_about_me_label">ABOUT ME (0/100)</label>
+                        <textarea name="register_about_me" id="register_about_me" maxlength="100" placeholder="I'm Oliver and I'm the founder of TellTheWorld!"></textarea>
+                    </div>
+                </div>
+                <div class="center_items">
                     <div class="form_item">
                         <label for="register_password">PASSWORD*</label>
                         <input type="password" name="register_password" id="register_password" minlength="8" maxlength="512" placeholder="secure_password" required>
@@ -53,7 +59,7 @@
                     </div>
                 </div>
                 <div class="center_items">
-                    <input type="submit" value="CREATE NOW">
+                    <input type="submit" name="register_submit" value="CREATE NOW">
                 </div>
             </form>
         </main>

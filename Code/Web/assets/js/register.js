@@ -51,3 +51,8 @@ document.getElementById("register_password").addEventListener('input', function 
 
     feedback.innerHTML = "Valid password";
 });
+
+document.getElementById("register_about_me").addEventListener('input', function (e) {
+    var lbl = document.getElementById("register_about_me_label");
+    lbl.innerHTML = "ABOUT ME (" + e.target.value.length + "/100)";
+});
