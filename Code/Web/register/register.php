@@ -2,7 +2,7 @@
 
     if(isset($_POST["register_submit"])){
         include "../assets/php/database.php";
-        include "hash.php";
+        include "../assets/php/hash.php";
 
         $nickname = $_POST["register_nickname"];
         $email = $_POST["register_email"];
