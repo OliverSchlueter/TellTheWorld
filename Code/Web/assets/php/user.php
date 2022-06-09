@@ -15,7 +15,7 @@ class User{
     public function __construct($tag, $email, $nickname, $birthdate, $aboutMe, $profilePicturePath, $joined, $passwordHash, $followers, $following) {
         $this->tag = $tag;
         $this->email = $email;
-        $this->nickname = $nicknam;
+        $this->nickname = $nickname;
         $this->birthdate = $birthdate;
         $this->aboutMe = $aboutMe;
         $this->profilePicturePath = $profilePicturePath;
