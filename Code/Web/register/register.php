@@ -3,17 +3,35 @@
     if(isset($_POST["register_submit"])){
         include "../assets/php/database.php";
         include "../assets/php/hash.php";
+        include "../assets/php/user.php";
 
         $nickname = $_POST["register_nickname"];
         $email = $_POST["register_email"];
-        $discord = $_POST["register_discord"];
         $bday = $_POST["register_bday"];
-        $aboutMe = $_POST["register_about_me"];
         $password = $_POST["register_password"];
+        $joined = time();
+        $discord = "";
+        $aboutMe = "";
+        $hasProfilePicture = false;
+
+        $errorMsg = "";
+
+        if(isset($_POST["register_discord"])){
+            $discord = $_POST["register_discord"];
+        }
+
+        if(isset($_POST["register_about_me"])){
+            $aboutMe = $_POST["register_about_me"];
+        }
+
+        if(isset($_FILES["register_profile_picture"])){
+            $hasProfilePicture = true;
+        }
 
         $emailRes = $users_collection->find(["email" => $email])->toArray();
         if(count($emailRes) > 0){
-            echo "email is already taken";
+            echo "<script>var errorMsg = 'This E-Mail is already registered';</script>";
+            include "fail.html";
             exit();
         }
 
@@ -24,7 +42,8 @@
         $timeout = 1000;
         do {
             if($timeout <= 0){
-                echo "Please choose a different nickname.";
+                echo "<script>var errorMsg = 'Please choose a different nickname';</script>";
+                include "fail.html";
                 exit();
                 break;
             }
@@ -55,24 +74,38 @@
 
         // TODO: check if correct type and size
 
+        $profilePicturePath = ($hasProfilePicture ? "/data/profile_pictures/$tag.jpg" : "");
+
         // move file to /data/profile_pictures/<tag>.jpg
         move_uploaded_file($pp['tmp_name'], "../data/profile_pictures/$tag.jpg");
-
+        
         $users_collection->insertOne([
             "tag" => $tag,
             "about_me" => $aboutMe,
             "birthdate" => $bday,
             "email" => $email,
-            "email" => $discord,
             "flollowers" => [],
             "following" => [],
-            "joined" => time(),
+            "joined" => $joined,
             "nickname" => $nickname,
-            "profile_picture" => "/data/profile_pictures/$tag.jpg",
+            "profile_picture" => $profilePicturePath,
             "password" => $password
         ]);
+        
+        echo "<script>
+            var nickname = '$nickname';
+            var tag = '$tag';
+        </script>";
 
-        echo "inserted";
+        include "success.html";
+
+        session_start();
+        $user = new User($tag, $email, $nickname, $bday, $aboutMe, $profilePicturePath, $joined, $password, [], []);
+        $_SESSION['logged_in'] = true;
+        $_SESSION['user'] = $user;
+
+    } else {
+        echo "<script>window.open('index.html');</script>";
     }
 
 ?>
