@@ -84,7 +84,7 @@
             "about_me" => $aboutMe,
             "birthdate" => $bday,
             "email" => $email,
-            "flollowers" => [],
+            "followers" => [],
             "following" => [],
             "joined" => $joined,
             "nickname" => $nickname,

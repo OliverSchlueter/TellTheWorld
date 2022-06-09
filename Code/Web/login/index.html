@@ -12,11 +12,11 @@
     <a href="../" class="back_to_main_page_btn"><i class="fa-solid fa-house"></i></a>
     <header>
         <main>
-            <form action="" method="post" class="center_self">
+            <form action="login.php" method="post" class="center_self">
                 <h1>Login now</h1>
                     <div class="form_item">
-                        <label for="login_nickname">NICKNAME*</label>
-                        <input type="text" name="login_nickname" placeholder="i_am_oliver" required>
+                        <label for="login_email">E-MAIL*</label>
+                        <input type="email" name="login_email" placeholder="oliver@telltheworld.com" required>
                     </div>
                     <div class="form_item">
                         <label for="login_password">PASSWORD*</label>
@@ -30,7 +30,7 @@
                         <a href="reset-password" class="forgot_password">Reset password</a>
                     </div>
                     <div class="center_items">
-                        <input type="submit" value="LOG IN">
+                        <input type="submit" name="login_submit" value="LOG IN">
                     </div>
             </form>
         </main>
