@@ -106,6 +106,9 @@
 
     } else {
         echo "<script>window.open('index.html');</script>";
+
+        echo "<script>var errorMsg = 'Please go back to register page';</script>";
+        include "fail.html";
     }
 
 ?>

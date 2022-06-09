@@ -1,5 +1,4 @@
 <?php
-
     if(isset($_POST["login_submit"])){
         include "../assets/php/database.php";
         include "../assets/php/hash.php";
@@ -37,8 +36,17 @@
                 $_SESSION['logged_in'] = true;
                 $_SESSION['user'] = $user;
 
+                if($rememberMe){
+                    $_SESSION['rememberMe'] = true;
+                    // TODO: set cookie
+                }
+
                 echo "<script>window.open('../web/');</script>";
-                
+
+                echo "<script>var nickname = '".$emailRes[0]['nickname']."';</script>";
+                include "success.html";
+                exit();
+
             } else {
                 echo "<script>var errorMsg = 'Incorrect password';</script>";
                 include "fail.html";
@@ -47,12 +55,15 @@
 
         } else {
             echo "<script>var errorMsg = 'Incorrect E-Mail';</script>";
-                include "fail.html";
-                exit();
+            include "fail.html";
+            exit();
         }
 
     } else {
         echo "<script>window.open('index.html');</script>";
+
+        echo "<script>var errorMsg = 'Please go back to login page';</script>";
+        include "fail.html";
     }
 
 ?>
