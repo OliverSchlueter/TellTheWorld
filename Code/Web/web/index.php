@@ -55,11 +55,11 @@
                 </p>
                 <div class="message_footer">
                     <p class="likes">
-                        <i class="fa-solid fa-message fa-xs"></i>
+                        <i class="fa-solid fa-heart fa-xs"></i>
                         123
                     </p>
                     <p class="comments">
-                        <i class="fa-solid fa-heart fa-xs"></i>
+                        <i class="fa-solid fa-message fa-xs"></i>
                         123
                     </p>
                     <p class="reposts">

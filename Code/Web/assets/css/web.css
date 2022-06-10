@@ -124,11 +124,22 @@ main{
     margin-left: 0;
 }
 
-.message .message_footer .likes,
-.message .message_footer .comments, 
-.message .message_footer .reposts,
-.message .message_footer .share{
+.message .message_footer .likes, .message .message_footer .likes i,
+.message .message_footer .comments, .message .message_footer .comments i, 
+.message .message_footer .reposts, .message .message_footer .reposts i,
+.message .message_footer .share, .message .message_footer .share i{
     cursor: pointer;
+    transition: color .15s ease-in-out;
+}
+
+.message .message_footer .likes:hover, .message .message_footer .likes:hover i{
+    color: var(--color-red);
+}
+
+.message .message_footer .comments:hover, .message .message_footer .comments:hover i, 
+.message .message_footer .reposts:hover, .message .message_footer .reposts:hover i,
+.message .message_footer .share:hover, .message .message_footer .share:hover i{
+    color: var(--color-orange);
 }
 
 .message .message_footer{
