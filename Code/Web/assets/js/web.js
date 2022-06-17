@@ -1,3 +1,13 @@
+let emojis = new Map();
+emojis.set(":beers:", "🍻");
+emojis.set(":joy:", "😂");
+emojis.set(":grinning:", "😀");
+emojis.set(":neutral:", "😐");
+emojis.set(":sleeping:", "😴");
+emojis.set(":money:", "🤑");
+emojis.set(":angry:", "😠");
+emojis.set(":pig:", "🐖");
+
 const messagesElement = document.getElementById("messages");
 
 function generateMessage(msg) {
@@ -21,7 +31,7 @@ function generateMessage(msg) {
         fi.classList.add(name);
         var txt = document.createTextNode(" " + amount + " ");
         fi.appendChild(txt);
-        fi.insertBefore(getIcon(icon), txt); 
+        fi.insertBefore(getIcon(icon), txt);
         parent.appendChild(fi);
     }
 
@@ -46,18 +56,7 @@ function generateMessage(msg) {
 
     message.appendChild(messageHeader);
 
-    var contentStr = msg.content;
-    contentStr = contentStr.replaceAll("\n", " <br> ");
-    var contentWords = contentStr.split(" ");
-    contentWords.forEach(w => {
-        if(w.startsWith("#")){
-            contentStr = contentStr.replace(w, "<span class='hashtag'>" + w.substring(1) + "</span>");
-        } else if(w.startsWith("@")){
-            contentStr = contentStr.replace(w, "<span class='mention'>" + w.substring(1) + "</span>");
-        }
-    });
-
-    getP("content", contentStr, message); //TODO: add support for hashtags, links and line-breaks
+    getP("content", updatePreviewText(msg.content), message);
 
     var messageFooter = document.createElement("div");
     messageFooter.classList.add("message_footer");
@@ -77,15 +76,6 @@ function generateMessage(msg) {
 }
 
 document.getElementById("write").addEventListener("click", function(){
-    /*generateMessage({
-        author: "Oliver",
-        time: "5min",
-        content: "Hello world, I'm Oliver.\n#FreiBier",
-        likes: 420,
-        comments: 69,
-        reposts: 42
-    });*/
-
     showDialog("writeDialog");
 });
 
@@ -111,7 +101,7 @@ document.getElementById("writePreview").onclick = function(e){
     var previewP = document.createElement("p");
     preview.appendChild(previewP);
 
-    document.getElementById("writeDialog").firstElementChild.insertBefore(preview, document.getElementById("writeSend"));
+    document.getElementById("writeDialog").firstElementChild.insertBefore(preview, document.getElementById("writePreview"));
 
     var previewLabel = document.createElement("label");
     previewLabel.id = "preview_label";
@@ -122,26 +112,35 @@ document.getElementById("writePreview").onclick = function(e){
     updatePreviewText(writeText.value);
 };
 
+// Also returns formatted text
 function updatePreviewText(text){
-
-    if(document.getElementById("preview_container") == null){
-        return;
-    }
-
-    var preview = document.getElementById("preview_container").firstChild;
-
     var words = text.split(/[\n\s]+/);
     var newText = text;
 
     words.forEach(w => {
         if(w.startsWith("#")){
             newText = newText.replace(w, "<span class='hashtag'>" + w.substring(1) + "</span>");
+        } else if(w.startsWith("@")){
+            newText = newText.replace(w, "<span class='mention'>" + w.substring(1) + "</span>");
+        } else if(w.startsWith("https://")){
+            newText = newText.replace(w, "<a  href='" + w + "'><span class='link'>" + w.substring(8) + "</span></a>");
         }
     });
 
     newText = newText.replaceAll("\n", "<br>");
 
+    emojis.forEach((v, k) => {
+        newText = newText.replaceAll(k, v);
+    });
+
+    if(document.getElementById("preview_container") == null){
+        return newText;
+    }
+
+    var preview = document.getElementById("preview_container").firstChild;
     preview.innerHTML = newText;
+
+    return newText;
 }
 
 document.getElementById("writeSend").onclick = function(e){
@@ -167,4 +166,9 @@ document.getElementById("writeSend").onclick = function(e){
     writeText.value = "";
 
     updatePreviewText();
+}
+
+document.getElementById("writeClear").onclick = function(e){
+    document.getElementById("writeText").value = "";
+    updatePreviewText("");
 }

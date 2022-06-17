@@ -26,10 +26,11 @@
     <div class="dialog-container" id="writeDialog">
         <dialog open>
             <img class="hideBtn" onclick="hideDialog('writeDialog')" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/OOjs_UI_icon_close.svg">
-            <h1>Tell the world!</h1>
-            <textarea id="writeText"></textarea>
-            <button id="writeSend">SEND</button>
+            <h1>Write something ...</h1>
+            <textarea id="writeText" placeholder="Tell the world something interesting ..."></textarea>
             <button id="writePreview">PREVIEW</button>
+            <button id="writeClear">CLEAR</button>
+            <button id="writeSend">SEND</button>
         </dialog>
     </div>
 
