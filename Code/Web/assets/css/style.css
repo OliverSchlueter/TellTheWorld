@@ -208,7 +208,7 @@ form h1{
     transform: translateY(50%);
 }
 
-input, textarea{
+input, textarea, div[contenteditable]{
     background-color: var(--background-color);
     font-family: var(--font-family);
     font-size: var(--font-size);

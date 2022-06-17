@@ -7,7 +7,7 @@
 }
 
 main{
-    width: 46%;
+    width: 54%;
     min-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -15,7 +15,7 @@ main{
 
 .side_section{
     position: fixed;
-    width: calc(27% - 40px);
+    width: calc(23% - 40px);
     min-width: 200px;
     min-height: 100vh;
     top: 0;
@@ -33,16 +33,79 @@ main{
 }
 
 /*
+    WRITE DIALOG
+*/
+
+#writeDialog{
+    min-width: 40% !important;
+}
+
+#writeText, #writeDialog .preview_container{
+    display: flex;
+    width: 92%;
+    min-height: 150px;
+    max-height: 300px !important;
+    resize: vertical;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-light-red);
+    border-radius: 8px;
+    padding: 5px 10px;
+    background-color: var(--background-color);
+}
+
+#preview_container{
+    border: none !important;
+}
+
+#preview_container p{
+    width: 100%;
+    margin: 0;
+    overflow-y: auto;
+}
+
+#preview_label{
+    margin-left: 10px;
+    color: var(--foreground-color-gray);
+}
+
+#writeDialog button{
+    margin-right: auto;
+    background-color: var(--color-red);
+    color: #FFF;
+    transition: all .2s ease-in-out;
+}
+
+#writeDialog button:hover{
+    box-shadow: 0px 0px 15px 3px var(--color-red);
+}
+
+/*
     MESSAGE
 */
 
 .hashtag{
     color: #FF4949;
+    height: fit-content;
+}
+
+.hashtag::before{
+    content: "#";
 }
 
 .link{
+    color: #fff349;
+    cursor: pointer;
+}
+
+.mention{
     color: #495bff;
     cursor: pointer;
+}
+
+.mention::before{
+    content: "@";
 }
 
 .message{
@@ -84,6 +147,10 @@ main{
     margin: 0;
     width: fit-content;
     cursor: pointer;
+}
+
+.message .author::before{
+    content: "@";
 }
 
 .message .time::before{
@@ -206,6 +273,7 @@ main{
     margin-top: 30px;
     border-radius: 35px;
     background-color: var(--color-red);
+    cursor: pointer;
 }
 
 #left_section ul li.write:hover{

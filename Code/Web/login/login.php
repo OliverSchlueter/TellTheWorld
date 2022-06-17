@@ -41,7 +41,7 @@
                     // TODO: set cookie
                 }
 
-                echo "<script>window.open('../web/');</script>";
+                //echo "<script>window.open('../web/');</script>";
 
                 echo "<script>var nickname = '".$emailRes[0]['nickname']."';</script>";
                 include "success.html";
@@ -60,7 +60,7 @@
         }
 
     } else {
-        echo "<script>window.open('index.html');</script>";
+        //echo "<script>window.open('index.html');</script>";
 
         echo "<script>var errorMsg = 'Please go back to login page';</script>";
         include "fail.html";
