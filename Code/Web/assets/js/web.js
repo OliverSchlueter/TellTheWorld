@@ -35,9 +35,45 @@ function generateMessage(msg) {
         parent.appendChild(fi);
     }
 
+    var getHr = function(parent) {
+        parent.appendChild(document.createElement("hr"));
+    };
+
+    const formattedMessage = updatePreviewText(msg.content);
+
     // TODO: set id to message
     var message = document.createElement("div");
     message.classList.add("message");
+
+    var dialogContainer = document.createElement("div");
+    dialogContainer.id = msg.id;
+    dialogContainer.classList.add("dialog-container");
+
+    var dialog = document.createElement("dialog");
+    dialog.open = true;
+
+    var hideImg = document.createElement("img");
+    hideImg.classList.add("hideBtn");
+    hideImg.src = "https://upload.wikimedia.org/wikipedia/commons/a/a0/OOjs_UI_icon_close.svg";
+    hideImg.onclick = () => hideDialog(msg.id);
+    dialog.appendChild(hideImg);
+
+    var msgH1 = document.createElement("h1");
+    msgH1.innerText = "Message by @" + msg.author;
+    dialog.appendChild(msgH1);
+
+    getHr(dialog);
+    getP("content", formattedMessage, dialog);
+    getHr(dialog);
+
+    var reportBtn = document.createElement("button");
+    reportBtn.textContent = "REPORT";
+    reportBtn.onclick = () => showSnackbar("This feature is currently disabled");
+    dialog.appendChild(reportBtn);
+
+
+    dialogContainer.appendChild(dialog);
+    message.appendChild(dialogContainer);
 
     var profilePicture = document.createElement("img");
     profilePicture.classList.add("profile_picture");
@@ -52,11 +88,12 @@ function generateMessage(msg) {
 
         var more = document.createElement("p");
         more.classList.add("more");
+        more.onclick = () => showDialog(msg.id);
         messageHeader.appendChild(more);
 
     message.appendChild(messageHeader);
 
-    getP("content", updatePreviewText(msg.content), message);
+    getP("content", formattedMessage, message);
 
     var messageFooter = document.createElement("div");
     messageFooter.classList.add("message_footer");
@@ -153,6 +190,7 @@ document.getElementById("writeSend").onclick = function(e){
     }
 
     generateMessage({
+        id: "msg2",
         author: "Oliver",
         time: "now",
         content: writeText.value,
@@ -171,4 +209,19 @@ document.getElementById("writeSend").onclick = function(e){
 document.getElementById("writeClear").onclick = function(e){
     document.getElementById("writeText").value = "";
     updatePreviewText("");
+}
+
+
+function showSnackbar(text){
+    var snackbar = document.createElement("div");
+    snackbar.classList.add("snackbar");
+    var snackbarText = document.createElement("p");
+    snackbarText.innerText = text;
+    snackbar.appendChild(snackbarText);
+
+    document.body.appendChild(snackbar);
+
+    snackbar.classList.add("show");
+
+    setTimeout(() => snackbar.remove(), 3500);
 }

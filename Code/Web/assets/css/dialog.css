@@ -5,7 +5,7 @@
     right: 0;
     left: 0;
     display: none;
-    z-index: 100;
+    z-index: 2;
     transition: all .2s ease-in-out;
 }
 
@@ -21,7 +21,7 @@
 }
 
 dialog{
-    background-color: var(--background-color2);
+    background-color: rgb(30, 25, 25);
     border: none;
     border-radius: 10px;
     min-width: 30%;
@@ -50,3 +50,35 @@ dialog .hideBtn{
 dialog .hideBtn:hover{
     filter: invert(34%) sepia(81%) saturate(4005%) hue-rotate(343deg) brightness(104%) contrast(102%);
 }
+
+/*
+    SNACKBAR
+*/
+
+.snackbar{
+    /* visibility: hidden; */
+    background-color: var(--background-color2);
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.snackbar.show {
+    animation: snackbar_fadein 0.5s, snackbar_fadeout 0.5s 3s;
+  }
+  
+  @keyframes snackbar_fadein {
+    from { bottom: 0; }
+    to { bottom: 30px; }
+  }
+  
+  
+  @keyframes snackbar_fadeout {
+    from { bottom: 30px; }
+    to { bottom: -100px; }
+  }

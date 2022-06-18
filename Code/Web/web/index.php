@@ -66,6 +66,8 @@
                             <span class="hashtag">TellTheWorld</span> beta is starting SOON!<br>
                             Get a beta account now at <span class="link">TellThe.world</span> and be in the beta team to help us improve the platform!<br>
                         </p>
+                        <hr>
+                        <button onclick="showSnackbar('This feature is currently disabled')">REPORT</button>
                     </dialog>
                 </div>
 
