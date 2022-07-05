@@ -35,3 +35,10 @@ def get_message_from_database(message_id: str):
     return Message(res["message_id"], res["timestamp"], res["user_tag"], res["content"], res["amount_likes"],
                    res["likes"],
                    res["amount_comments"], res["comments"])
+
+
+def add_message_to_database(message_id, timestamp, user_tag, content):
+    m = Message(message_id, timestamp, user_tag, content, 0, [], 0, [])
+    database.db.collections["messages"].insert_one(m.to_json())
+
+    return m;

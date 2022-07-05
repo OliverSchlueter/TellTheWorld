@@ -15,4 +15,3 @@ class ApiApp:
     def run(self):
         print("Running api app")
         self.app.run(host="localhost", port=8080, debug=True)
-
