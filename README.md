@@ -8,3 +8,6 @@ Chat with users. Follow other users and get a notification if they sent a messag
 ### API
 Run Code/Backend/main.py
 RESTful API will be on port 8080
+
+### Web
+Web code is located in Code/Web/

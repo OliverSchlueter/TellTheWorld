@@ -1,0 +1,65 @@
+body{
+    height: 100vh;
+}
+
+header{
+    /* min-height: calc(100vh - 3px); */
+    min-height: 100vh;
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+
+#profile_picture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px 3px var(--color-red);
+}
+
+main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    animation-name: header_slide_in_animation;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.28, 0.92, 0.77, 1.07);
+    animation-iteration-count: 1;
+}
+
+@keyframes header_slide_in_animation {
+    0% { transform: translate(-50%, -200%); }
+    100%{ transform: translate(-50%, -50%); }
+}
+
+.custom_file_upload{
+    position: absolute;
+    top: 23%;
+}
+
+.forgot_password{
+    padding-top: 5px;
+}
+
+.forgot_password, .label_checkbox{
+    color: var(--color-light-red);
+    font-size: calc(var(--font-size) * 0.8);
+    transition: color .2s ease-in-out;
+}
+
+.forgot_password:hover{
+    color: var(--color-red);
+}
+
+.login_extras{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login_extras:last-child{
+    float: right;
+    vertical-align: baseline;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
+    <script src="https://kit.fontawesome.com/690661ce23.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/main.js"></script>
+    <title>Tell The World - Register</title>
+</head>
+<body>
+    <a href="../" class="back_to_main_page_btn"><i class="fa-solid fa-house"></i></a>
+    <header>
+        <main>
+            <form action="login.php" method="post" class="center_self">
+                <h1>Login now</h1>
+                    <div class="form_item">
+                        <label for="login_email">E-MAIL*</label>
+                        <input type="email" name="login_email" placeholder="oliver@telltheworld.com" required>
+                    </div>
+                    <div class="form_item">
+                        <label for="login_password">PASSWORD*</label>
+                        <input type="password" name="login_password" minlength="8" maxlength="512" placeholder="secure_password" required>
+                    </div>
+                    <div class="form_item login_extras">
+                        <div>
+                            <input type="checkbox" name="login_remember_me" value="a">
+                            <label for="login_remember_me" class="label_checkbox">Remember me</label>
+                        </div>
+                        <a href="reset-password" class="forgot_password">Reset password</a>
+                    </div>
+                    <div class="center_items">
+                        <input type="submit" name="login_submit" value="LOG IN">
+                    </div>
+            </form>
+        </main>
+    </header>
+</body>
+</html>

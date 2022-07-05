@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
+    <script src="https://kit.fontawesome.com/690661ce23.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/main.js"></script>
+    <title>Tell The World - Register</title>
+</head>
+<body>
+    <header>
+        <main>
+            <h1 id="welcome">Welcome!</h1>
+            <h2 class="center_text">You have been successfully registered!</h2>
+            <h3 class="center_items" id="tag"></h3>
+            <div class="center_items">
+                <a href="../web/"><button><i class="fa-solid fa-circle-play fa-xs"></i> START NOW</button></a>
+                <a href="../web/account/"><button><i class="fa-solid fa-user fa-xs"></i> YOUR PROFILE</button></a>
+            </div>
+        </main>
+    </header>
+
+    <script>
+        document.getElementById("welcome").innerHTML = "Welcome, " + nickname;
+        document.getElementById("tag").innerHTML = "Your tag is: " + tag;
+    </script>
+</body>
+</html>

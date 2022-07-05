@@ -1,0 +1,27 @@
+#headline{
+    padding-top: 10%;
+    margin-top: 0;
+    font-weight: 800;
+    font-size: 150px;
+    text-align: center;
+    color: var(--color-red);
+    text-shadow: 0 2px 2px #dda0a0, 
+      -2px 5px 1px #b88282, 
+      -4px 8px 0px #9b6b6b, 
+      -6px 11px 0px #775858,
+      -8px 14px 0px #503d3d,
+      -10px 17px 0px #362828,
+      -12px 20px 0px #181515,
+      -14px 23px 0px #000;
+}
+
+#subline{
+    text-align: center;
+    /* color: var(--color-red); */
+    color: var(--background-color);
+    filter: brightness(60%);
+    font-weight: 600;
+    font-size: 50px;
+    margin: 20px 0px;
+    text-shadow: 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red), 0 -1px 3px var(--color-red);
+}

@@ -1,0 +1,84 @@
+.dialog-container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    z-index: 2;
+    transition: all .2s ease-in-out;
+}
+
+.dialog-container::before{
+    content: "";
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+}
+
+dialog{
+    background-color: rgb(30, 25, 25);
+    border: none;
+    border-radius: 10px;
+    min-width: 30%;
+    max-width: 40%;
+    min-height: 50px;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: var(--font-color);
+    font-size: var(--font-size);
+    font-family: var(--font-family);
+}
+
+dialog .hideBtn{
+    /* float: right; */
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    filter: invert(25%) sepia(100%) saturate(1390%) hue-rotate(338deg) brightness(91%) contrast(94%);
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+dialog .hideBtn:hover{
+    filter: invert(34%) sepia(81%) saturate(4005%) hue-rotate(343deg) brightness(104%) contrast(102%);
+}
+
+/*
+    SNACKBAR
+*/
+
+.snackbar{
+    /* visibility: hidden; */
+    background-color: var(--background-color2);
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.snackbar.show {
+    animation: snackbar_fadein 0.5s, snackbar_fadeout 0.5s 3s;
+  }
+  
+  @keyframes snackbar_fadein {
+    from { bottom: 0; }
+    to { bottom: 30px; }
+  }
+  
+  
+  @keyframes snackbar_fadeout {
+    from { bottom: 30px; }
+    to { bottom: -100px; }
+  }
