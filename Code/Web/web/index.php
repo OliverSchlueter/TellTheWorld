@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../assets/css/dialog.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/web.css">
+    <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/690661ce23.js" crossorigin="anonymous"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dialogManager.js"></script>
@@ -41,7 +42,7 @@
                 if($logged_in && strlen($currentUser->profilePicturePath) > 0){
                         echo '<li><img class="profile_picture" id="profile_picture" src="..'.$currentUser->profilePicturePath.'"></li>';
                 } else {
-                    echo '<li><img class="profile_picture" id="profile_picture" src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"></li>';
+                    echo '<li><img class="profile_picture" id="profile_picture" src="../assets/img/logo.png"></li>';
                 }
             ?>
             <li><a href="../"><i class="fa-solid fa-house"></i>Home</a></li>
