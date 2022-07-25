@@ -5,10 +5,10 @@
         include "../assets/php/hash.php";
         include "../assets/php/user.php";
 
-        $nickname = $_POST["register_nickname"];
+        $nickname = str_replace("'", "\'", $_POST["register_nickname"]);
         $email = $_POST["register_email"];
         $bday = $_POST["register_bday"];
-        $password = $_POST["register_password"];
+        $password = str_replace("'", "\'", $_POST["register_password"]);
         $joined = time();
         $discord = "";
         $aboutMe = "";
@@ -21,21 +21,21 @@
         }
 
         if(isset($_POST["register_about_me"])){
-            $aboutMe = $_POST["register_about_me"];
+            $aboutMe = str_replace("'", "\'", $_POST["register_about_me"]);
         }
 
-        if(isset($_FILES["register_profile_picture"])){
+        if(isset($_FILES["register_profile_picture"]) && $_FILES["register_profile_picture"]["size"] > 0){
             $hasProfilePicture = true;
         }
 
-        $emailRes = $users_collection->find(["email" => $email])->toArray();
-        if(count($emailRes) > 0){
+        $queryResult = $db->query("SELECT * FROM users WHERE email='$email'")->fetch_assoc();
+        if($queryResult){
             echo "<script>var errorMsg = 'This E-Mail is already registered';</script>";
             include "fail.html";
             exit();
         }
 
-        $nicknameRes = $users_collection->find(["nickname" => $nickname])->toArray();
+        $nicknameResult = $db->query("SELECT * FROM users WHERE email='$email'");
 
         $tagID = "";
         $foundID = false;
@@ -50,7 +50,7 @@
 
             $tagID = "".random_int(0, 9).random_int(0, 9).random_int(0, 9).random_int(0, 9).random_int(0, 9);
             
-            foreach($nicknameRes as $n){
+            foreach($nicknameResult as $n){
                 $id = explode("#", $n["tag"], 2)[0];
                 if($id == $tagID){
                     $timeout--;
@@ -79,19 +79,14 @@
         // move file to /data/profile_pictures/<tag>.jpg
         move_uploaded_file($pp['tmp_name'], "../data/profile_pictures/$tag.jpg");
         
-        $users_collection->insertOne([
-            "tag" => $tag,
-            "about_me" => $aboutMe,
-            "birthdate" => $bday,
-            "email" => $email,
-            "followers" => [],
-            "following" => [],
-            "joined" => $joined,
-            "nickname" => $nickname,
-            "profile_picture" => $profilePicturePath,
-            "password" => $password
-        ]);
+        $insertNewUser = $db->query("INSERT INTO users(tag, password, joined, nickname, email, birthdate, about_me, profile_picture) VALUES('$tag', '$password', $joined, '$nickname', '$email', '$bday', '$aboutMe', '$profilePicturePath')");
         
+        if(!$insertNewUser){
+            echo "<script>var errorMsg = 'Could not perform register process, please try again';</script>";
+            include "fail.html";
+            die();
+        }
+
         echo "<script>
             var nickname = '$nickname';
             var tag = '$tag';
@@ -100,7 +95,7 @@
         include "success.html";
 
         session_start();
-        $user = new User($tag, $email, $nickname, $bday, $aboutMe, $profilePicturePath, $joined, $password, [], []);
+        $user = new User($tag, $email, $nickname, $bday, $aboutMe, $profilePicturePath, $joined, $password, $db);
         $_SESSION['logged_in'] = true;
         $_SESSION['user'] = $user;
 

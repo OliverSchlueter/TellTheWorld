@@ -13,24 +13,23 @@
             $rememberMe = true;
         }
 
-        $emailRes = $users_collection->find(["email" => $email])->toArray();
+        $queryResult = $db->query("SELECT * FROM users WHERE email='$email'")->fetch_assoc();
 
-        if(count($emailRes) == 1){
+        if($queryResult){
             
-            if($passwordHash == $emailRes[0]['password']){
+            if($passwordHash == $queryResult['password']){
 
                 session_start();
                 $user = new User(
-                    $emailRes[0]['tag'],
-                    $emailRes[0]['email'],
-                    $emailRes[0]['nickname'],
-                    $emailRes[0]['birthdate'],
-                    $emailRes[0]['about_me'],
-                    $emailRes[0]['profile_picture'],
-                    $emailRes[0]['joined'],
-                    $emailRes[0]['password'],
-                    $emailRes[0]['followers'],
-                    $emailRes[0]['following'],
+                    $queryResult['tag'],
+                    $queryResult['email'],
+                    $queryResult['nickname'],
+                    $queryResult['birthdate'],
+                    $queryResult['about_me'],
+                    $queryResult['profile_picture'],
+                    $queryResult['joined'],
+                    $queryResult['password'],
+                    $db
                 );
 
                 $_SESSION['logged_in'] = true;
@@ -43,7 +42,7 @@
 
                 //echo "<script>window.open('../web/');</script>";
 
-                echo "<script>var nickname = '".$emailRes[0]['nickname']."';</script>";
+                echo "<script>var nickname = '".$queryResult['nickname']."';</script>";
                 include "success.html";
                 exit();
 

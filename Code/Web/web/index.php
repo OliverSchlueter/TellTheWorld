@@ -6,6 +6,7 @@
         session_start();
         $logged_in = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : false;
         $mode = $logged_in ? "home" : "explore";
+        $currentUser = $_SESSION['user'];
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +37,13 @@
 
     <section class="side_section" id="left_section">
         <ul>
-            <li><img class="profile_picture" src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"></li>
+            <?php 
+                if($logged_in && strlen($currentUser->profilePicturePath) > 0){
+                        echo '<li><img class="profile_picture" id="profile_picture" src="..'.$currentUser->profilePicturePath.'"></li>';
+                } else {
+                    echo '<li><img class="profile_picture" id="profile_picture" src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"></li>';
+                }
+            ?>
             <li><a href="../"><i class="fa-solid fa-house"></i>Home</a></li>
             <li><a href=""><i class="fa-solid fa-magnifying-glass"></i>Explore</a></li>
             <?php 

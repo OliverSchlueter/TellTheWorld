@@ -30,3 +30,13 @@ function hide_sidebar(){
         sidebar_hidden = true
     }
 }
+
+function httpRequest(method, url, data) {
+    const requestOptions = {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    fetch(url, requestOptions);
+}

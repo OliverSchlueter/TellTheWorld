@@ -199,6 +199,22 @@ document.getElementById("writeSend").onclick = function(e){
         reposts: 0
     });
 
+    // message_data = {
+    //     "message_id": "msg2",
+    //     "timestamp": Date.now(),
+    //     "user_tag": "Oliver",
+    //     "content": writeText.value
+    // }
+
+    message_data = {
+        "message_id": "12344242141", 
+        "timestamp": Date.now().toString(), 
+        "user_tag": "Oliver#80273", 
+        "content": writeText.value
+    }
+
+    httpRequest("PUT", "http://LAPTOP-AF69J4AV.local:8080/api/v1/message/add/", message_data)
+
     hideDialog("writeDialog");
 
     writeText.value = "";
