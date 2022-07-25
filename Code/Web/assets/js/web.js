@@ -147,8 +147,12 @@ function generateMessage(msg) {
             result = minutes + " minutes";
         }
 
-        if(minutes == 0 ){
-            return "now";
+        if(minutes == 0){
+            if(seconds < 5){
+                return "now";
+            } else {
+                result = seconds + " seconds";
+            }
         }
 
         return result + " ago";

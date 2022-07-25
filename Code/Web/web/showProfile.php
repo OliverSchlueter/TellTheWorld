@@ -22,7 +22,7 @@
     <div class="center_items">
         <div>
             <label for="about_me">ABOUT ME</label>
-            <p class="about_me" name="about_me"><?= $showProfileUser->aboutMe ?></p>
+            <p class="about_me" name="about_me"><?= str_replace("\'", "'", str_replace("\n", "<br>", $showProfileUser->aboutMe)) ?></p>
         </div>
     </div>
 </div>
