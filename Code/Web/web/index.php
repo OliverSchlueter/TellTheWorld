@@ -76,7 +76,8 @@
                         break;
 
                     case 'my_profile':
-                        include "myProfile.php";
+                        $showProfileUser = $currentUser;
+                        include "showProfile.php";
                         break;
                 }
             ?>

@@ -35,6 +35,10 @@ header{
     background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55) 73%, rgba(252, 57, 3, 0.45) 100%);
 }
 
+::selection{
+    background-color: var(--color-light-red);
+}
+
 h1, h2, h3{
     margin: .5em 0;
 }
