@@ -19,13 +19,12 @@
     <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/690661ce23.js" crossorigin="anonymous"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/web.js"></script>
     <script src="../assets/js/dialogManager.js"></script>
     <title>Tell The World</title>
 </head>
 <body>
     <div class="bg"></div>
-
+    
     <div class="dialog-container" id="writeDialog">
         <dialog open>
             <img class="hideBtn" onclick="hideDialog('writeDialog')" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/OOjs_UI_icon_close.svg">
@@ -36,51 +35,52 @@
             <button id="writeSend">SEND</button>
         </dialog>
     </div>
-
+    
     <section class="side_section" id="left_section">
         <ul>
             <?php 
                 if($logged_in && strlen($currentUser->profilePicturePath) > 0){
-                        echo '<li><img class="profile_picture" id="profile_picture" src="..'.$currentUser->profilePicturePath.'"></li>';
+                    echo '<li><img class="profile_picture" id="profile_picture" src="..'.$currentUser->profilePicturePath.'"></li>';
                 } else {
                     echo '<li><img class="profile_picture" id="profile_picture" src="../assets/img/logo.png"></li>';
                 }
-            ?>
+                ?>
             <li><a href=""><i class="fa-solid fa-house"></i>Home</a></li>
             <li><a href=""><i class="fa-solid fa-magnifying-glass"></i>Explore</a></li>
             <?php 
                 if($logged_in){
                     echo '<li><a href=""><i class="fa-solid fa-user"></i>My Profile</a></li>
-                          <li><a href=""><i class="fa-solid fa-bell"></i>Notifications</a></li>
-                          <li><a href=""><i class="fa-solid fa-gear"></i>Settings</a></li>';
+                    <li><a href=""><i class="fa-solid fa-bell"></i>Notifications</a></li>
+                    <li><a href=""><i class="fa-solid fa-gear"></i>Settings</a></li>';
                 }
-            ?>
+                ?>
             <a id="write"><li class="write">Write</li></a>
         </ul>
     </section>
-
+    
     <main>
         <div id="header">
             <h1>Latest Posts</h1>
         </div>
         <div id="messages">
+            <script src="../assets/js/web.js"></script>
             <?php
                 if($logged_in){
                     foreach($currentUser->messages as $msg){
                         echo "<script>
-                            generateMessage({
-                                id: '".$msg->id."',
-                                author: '".$currentUser->nickname."',
-                                time: ".$msg->timeSent.",
-                                content: '".$msg->content."',
-                                likes: ".$msg->amountLikes.",
-                                comments: ".$msg->amountComments.",
-                                reposts: 0
-                            });
+                        generateMessage({
+                            id: '".$msg->id."',
+                            author: '".$currentUser->nickname."',
+                            time: ".$msg->timeSent.",
+                            content: '".$msg->content."',
+                            likes: ".$msg->amountLikes.",
+                            comments: ".$msg->amountComments.",
+                            reposts: 0
+                        });
                         </script>";
                     }
                 }
-            ?>
+                ?>
             <div class="message">
                 <div class="dialog-container" id="msg1">
                     <dialog open>

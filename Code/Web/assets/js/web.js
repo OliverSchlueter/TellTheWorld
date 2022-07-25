@@ -80,11 +80,78 @@ function generateMessage(msg) {
     profilePicture.src = "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
     message.appendChild(profilePicture);
 
+    const formatTime = (t) => {
+        const current = Date.now();
+        const millis = current - t;
+
+        var seconds = Math.floor(millis / 1000);
+
+        var minutes = 0, hours = 0, days = 0, weeks = 0, months = 0, years = 0;
+
+        while(seconds >= 60){
+            minutes++;
+            seconds -= 60;
+        }
+
+        while(minutes >= 60){
+            hours++;
+            minutes -= 60;
+        }
+
+        while(hours >= 24){
+            days++;
+            hours -= 24;
+        }
+
+        while(days >= 7){
+            weeks++;
+            days -= 7;
+        }
+
+        while(weeks >= 4){
+            months++;
+            weeks -= 4;
+        }
+
+        while(months >= 12){
+            years++;
+            months -= 12;
+        }
+
+        var result = "";
+        
+        if(years > 0){
+            result = years + " years";
+        }
+
+        if(months > 0){
+            result = months + " months";
+        }
+
+        if(weeks > 0){
+            result = weeks + " weeks";
+        }
+
+        if(days > 0){
+            result = days + " days";
+        }
+
+        if(hours > 0){
+            result = hours + " hours";
+        }
+
+        if(minutes > 0){
+            result = minutes + " minutes";
+        }
+
+        return result + " ago";
+    }
+
     var messageHeader = document.createElement("div");
     messageHeader.classList.add("message_header");
 
         getP("author", msg.author, messageHeader);
-        getP("time", msg.time, messageHeader);
+        getP("time", formatTime(msg.time), messageHeader);
 
         var more = document.createElement("p");
         more.classList.add("more");
