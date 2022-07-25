@@ -37,7 +37,5 @@ function httpRequest(method, url, data) {
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     http.send(new URLSearchParams(data).toString());
 
-    http.onreadystatechange = (e) => {
-        console.log("RESPONSE: " + http.responseText)
-    }
+    return http;
 }

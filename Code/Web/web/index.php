@@ -23,8 +23,9 @@
     <?php
         if($logged_in){
             echo "<script>
-                const USER_NICKNAME = ".$currentUser->nickname.";
-                const USER_TAG = ".$currentUser->tag.";
+                const USER_NICKNAME = '".$currentUser->nickname."';
+                const USER_TAG = '".$currentUser->tag."';
+                const USER_PROFILE_PICTURE_PATH = '".$currentUser->profilePicturePath."';
             </script>";
         }
     ?>
@@ -89,8 +90,9 @@
                         generateMessage({
                             id: '".$msg->id."',
                             author: '".$currentUser->nickname."',
+                            profile_picture: '".$currentUser->profilePicturePath."',
                             time: ".$msg->timeSent.",
-                            content: '".$msg->content."',
+                            content: \"".str_replace("\n", "<br>", $msg->content)."\",
                             likes: ".$msg->amountLikes.",
                             comments: ".$msg->amountComments.",
                             reposts: 0

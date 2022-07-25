@@ -57,11 +57,11 @@ class User{
         $this->messages = [];
 
         foreach($db->query("SELECT * FROM user_follows_user WHERE user_tag='$tag'") as $row){
-            array_push($following, $row['follower_tag']);
+            array_push($this->following, $row['follower_tag']);
         }
 
         foreach($db->query("SELECT * FROM user_follows_user WHERE follower_tag='$tag'") as $row){
-            array_push($followers, $row['user_tag']);
+            array_push($this->followers, $row['user_tag']);
         }
 
         foreach($db->query("SELECT * FROM messages WHERE sender_tag='$tag' ORDER BY time_sent LIMIT 20") as $row){

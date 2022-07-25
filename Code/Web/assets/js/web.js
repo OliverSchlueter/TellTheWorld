@@ -44,6 +44,7 @@ function generateMessage(msg) {
     // TODO: set id to message
     var message = document.createElement("div");
     message.classList.add("message");
+    message.id = "MSG_" + msg.id;
 
     var dialogContainer = document.createElement("div");
     dialogContainer.id = msg.id;
@@ -77,7 +78,9 @@ function generateMessage(msg) {
 
     var profilePicture = document.createElement("img");
     profilePicture.classList.add("profile_picture");
-    profilePicture.src = "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
+    if((msg.profile_picture + "").length > 0) profilePicture.src = "../" + USER_PROFILE_PICTURE_PATH;   
+    else profilePicture.src = "../assets/img/logo.png";
+
     message.appendChild(profilePicture);
 
     const formatTime = (t) => {
@@ -144,6 +147,10 @@ function generateMessage(msg) {
             result = minutes + " minutes";
         }
 
+        if(minutes == 0 ){
+            return "now";
+        }
+
         return result + " ago";
     }
 
@@ -177,6 +184,8 @@ function generateMessage(msg) {
     message.appendChild(messageFooter);
 
     messagesElement.insertBefore(message, messagesElement.firstChild);
+
+    return message;
 }
 
 document.getElementById("write").addEventListener("click", function(){
@@ -256,9 +265,12 @@ document.getElementById("writeSend").onclick = function(e){
         return;
     }
 
-    generateMessage({
-        id: "msg2",
+    const temp_message_id = "TEMP_" + Math.floor(Math.random() * 10000) + 1;
+
+    messageElement = generateMessage({
+        id: temp_message_id,
         author: USER_NICKNAME,
+        profile_picture: USER_PROFILE_PICTURE_PATH,
         time: "now",
         content: writeText.value,
         likes: 0,
@@ -266,13 +278,18 @@ document.getElementById("writeSend").onclick = function(e){
         reposts: 0
     });
 
-    message_data = {
+    request_data = {
         "action": "new_message",
         "timestamp": Date.now().toString(),  
         "content": writeText.value
     }
 
-    httpRequest("POSt", "messageEndpoint.php", message_data)
+    const http = httpRequest("POST", "messageEndpoint.php", request_data);
+
+    http.onreadystatechange = (e) => {
+        const realID = JSON.parse(e.target.response).message_id;
+        messageElement.id = "MSG_" + realID;
+    };
 
     hideDialog("writeDialog");
 
