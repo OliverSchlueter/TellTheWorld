@@ -1,0 +1,54 @@
+.my_profile_container{
+    background-color: var(--background-color2);
+    border-bottom: 2px solid var(--color-red);
+    border-top: 2px solid var(--color-red);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    box-shadow: inset 0px 0px 30px 0px var(--color-red);
+}
+
+.my_profile_container .profile_picture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 3px var(--color-red);
+    margin-bottom: 20px;
+}
+
+.my_profile_container h1, .my_profile_container h2{
+    margin: 0;
+}
+
+.my_profile_container .joined,
+.my_profile_container .follow h2{
+    font-size: 0.9em;
+    color: var(--foreground-color-gray);
+    margin: 10px;
+}
+
+.my_profile_container .follow{
+    display: flex;
+    justify-content: center;
+}
+
+.my_profile_container .follow .amount{
+    color: var(--foreground-color);
+}
+
+.my_profile_container .follow h2,
+.my_profile_container .follow h2 .amount{
+    transition: all ease-in-out .2s;
+}
+
+.my_profile_container .follow h2:hover > .amount{
+    color: var(--color-red);
+    cursor: pointer;
+}
+
+.my_profile_container .follow h2:hover{
+    color: var(--color-light-red);
+    cursor: pointer;
+}

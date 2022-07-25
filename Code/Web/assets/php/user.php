@@ -78,6 +78,10 @@ class User{
         }
     }
 
+    public function joinedFormated() {
+        return date("d M Y", $this->joined);
+    }
+
     
 }
 

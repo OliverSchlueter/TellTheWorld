@@ -258,7 +258,7 @@ document.getElementById("writeSend").onclick = function(e){
 
     generateMessage({
         id: "msg2",
-        author: "Oliver",
+        author: USER_NICKNAME,
         time: "now",
         content: writeText.value,
         likes: 0,

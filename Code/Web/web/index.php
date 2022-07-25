@@ -5,8 +5,8 @@
 
         session_start();
         $logged_in = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : false;
-        $mode = $logged_in ? "home" : "explore";
         $currentUser = $_SESSION['user'];
+        $site = isset($_GET['site']) ? $_GET['site'] : 'my_profile';
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,14 @@
     <script src="https://kit.fontawesome.com/690661ce23.js" crossorigin="anonymous"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dialogManager.js"></script>
+    <?php
+        if($logged_in){
+            echo "<script>
+                const USER_NICKNAME = ".$currentUser->nickname.";
+                const USER_TAG = ".$currentUser->tag.";
+            </script>";
+        }
+    ?>
     <title>Tell The World</title>
 </head>
 <body>
@@ -45,11 +53,11 @@
                     echo '<li><img class="profile_picture" id="profile_picture" src="../assets/img/logo.png"></li>';
                 }
                 ?>
-            <li><a href=""><i class="fa-solid fa-house"></i>Home</a></li>
-            <li><a href=""><i class="fa-solid fa-magnifying-glass"></i>Explore</a></li>
+            <li><a href="../"><i class="fa-solid fa-house"></i>Home</a></li>
+            <li><a href="./?site=latest_posts"><i class="fa-solid fa-magnifying-glass"></i>Explore</a></li>
             <?php 
                 if($logged_in){
-                    echo '<li><a href=""><i class="fa-solid fa-user"></i>My Profile</a></li>
+                    echo '<li><a href="./?site=my_profile"><i class="fa-solid fa-user"></i>My Profile</a></li>
                     <li><a href=""><i class="fa-solid fa-bell"></i>Notifications</a></li>
                     <li><a href=""><i class="fa-solid fa-gear"></i>Settings</a></li>';
                 }
@@ -60,7 +68,17 @@
     
     <main>
         <div id="header">
-            <h1>Latest Posts</h1>
+            <?php
+                switch ($site) {
+                    case 'latest_posts':
+                        echo "<h1>Latest Posts</h1>";
+                        break;
+
+                    case 'my_profile':
+                        include "myProfile.php";
+                        break;
+                }
+            ?>
         </div>
         <div id="messages">
             <script src="../assets/js/web.js"></script>
