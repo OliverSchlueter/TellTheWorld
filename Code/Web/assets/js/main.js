@@ -32,11 +32,12 @@ function hide_sidebar(){
 }
 
 function httpRequest(method, url, data) {
-    const requestOptions = {
-        method: method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    };
+    const http = new XMLHttpRequest();
+    http.open(method, url);
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.send(new URLSearchParams(data).toString());
 
-    fetch(url, requestOptions);
+    http.onreadystatechange = (e) => {
+        console.log("RESPONSE: " + http.responseText)
+    }
 }

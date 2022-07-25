@@ -19,6 +19,7 @@
     <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/690661ce23.js" crossorigin="anonymous"></script>
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/web.js"></script>
     <script src="../assets/js/dialogManager.js"></script>
     <title>Tell The World</title>
 </head>
@@ -45,7 +46,7 @@
                     echo '<li><img class="profile_picture" id="profile_picture" src="../assets/img/logo.png"></li>';
                 }
             ?>
-            <li><a href="../"><i class="fa-solid fa-house"></i>Home</a></li>
+            <li><a href=""><i class="fa-solid fa-house"></i>Home</a></li>
             <li><a href=""><i class="fa-solid fa-magnifying-glass"></i>Explore</a></li>
             <?php 
                 if($logged_in){
@@ -63,7 +64,23 @@
             <h1>Latest Posts</h1>
         </div>
         <div id="messages">
-            <!-- AUTO GENERATE MESSAGES -->
+            <?php
+                if($logged_in){
+                    foreach($currentUser->messages as $msg){
+                        echo "<script>
+                            generateMessage({
+                                id: '".$msg->id."',
+                                author: '".$currentUser->nickname."',
+                                time: ".$msg->timeSent.",
+                                content: '".$msg->content."',
+                                likes: ".$msg->amountLikes.",
+                                comments: ".$msg->amountComments.",
+                                reposts: 0
+                            });
+                        </script>";
+                    }
+                }
+            ?>
             <div class="message">
                 <div class="dialog-container" id="msg1">
                     <dialog open>
@@ -121,7 +138,5 @@
             <input type="search" name="search_input" placeholder="Search for users or hashtags" list="search_history">
         </form>
     </section>
-
-    <script src="../assets/js/web.js"></script>
 </body>
 </html>

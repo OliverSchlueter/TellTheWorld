@@ -3,6 +3,7 @@ USE telltheworld;
 
 CREATE TABLE IF NOT EXISTS users(
     tag VARCHAR(255) NOT NULL PRIMARY KEY,
+    password VARCHAR(255) NOT NULL,
     joined INT UNSIGNED NOT NULL,
     nickname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -14,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS messages(
     id VARCHAR(255) NOT NULL PRIMARY KEY,
-    time_sent INT UNSIGNED NOT NULL,
+    time_sent BIGINT NOT NULL,
     sender_tag VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     amount_likes INT UNSIGNED NOT NULL,

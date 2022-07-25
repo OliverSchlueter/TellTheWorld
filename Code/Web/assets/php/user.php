@@ -1,5 +1,35 @@
 <?php
 
+class Message{
+    var $id;
+    var $timeSent;
+    var $senderTag;
+    var $content;
+    var $amountLikes;
+    var $amountComments;
+    var $likes;
+    var $comments;
+
+    public function __construct($id, $timeSent, $senderTag, $content, $amountLikes, $amountComments){
+        $this->id = $id;
+        $this->timeSent = $timeSent;
+        $this->senderTag = $senderTag;
+        $this->content = $content;
+        $this->amountLikes = $amountLikes;
+        $this->amountComments = $amountComments;
+        $this->likes = [];
+        $this->comments = [];
+    }
+
+    public function loadLikes(){
+        //TODO: load likes from db
+    }
+
+    public function loadComments(){
+        //TODO: load comments from db
+    }
+}
+
 class User{
     var $tag;
     var $email;
@@ -11,6 +41,7 @@ class User{
     var $passwordHash;
     var $followers;
     var $following;
+    var $messages;
 
     public function __construct($tag, $email, $nickname, $birthdate, $aboutMe, $profilePicturePath, $joined, $passwordHash, $db) {
         $this->tag = $tag;
@@ -23,14 +54,27 @@ class User{
         $this->passwordHash = $passwordHash;
         $this->followers = [];
         $this->following = [];
+        $this->messages = [];
 
-        // add following users and followers
         foreach($db->query("SELECT * FROM user_follows_user WHERE user_tag='$tag'") as $row){
             array_push($following, $row['follower_tag']);
         }
 
         foreach($db->query("SELECT * FROM user_follows_user WHERE follower_tag='$tag'") as $row){
             array_push($followers, $row['user_tag']);
+        }
+
+        foreach($db->query("SELECT * FROM messages WHERE sender_tag='$tag' ORDER BY time_sent LIMIT 20") as $row){
+            $msg = new Message(
+                $row['id'],
+                $row['time_sent'],
+                $row['sender_tag'],
+                $row['content'],
+                $row['amount_likes'],
+                $row['amount_comments'],
+            );
+
+            array_push($this->messages, $msg);
         }
     }
 
