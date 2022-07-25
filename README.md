@@ -5,8 +5,12 @@ Chat with users. Follow other users and get a notification if they sent a messag
 
 ## How to use
 
+### Database
+Start MySQL server
+Run the SQL script: ./Planning/database.sql
+
 ### API
-Run Code/Backend/main.py
+Run ./Code/Backend/main.py
 RESTful API will be on port 8080
 
 ### Web
