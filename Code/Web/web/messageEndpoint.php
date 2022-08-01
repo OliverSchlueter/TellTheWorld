@@ -91,12 +91,34 @@
             break;
         
         case 'like_message':
+            echo json_encode([
+                "status" => "fail",
+                "error" => "Not implemented"
+            ]);
+            exit();
             break;
 
         case 'comment_message':
+            echo json_encode([
+                "status" => "fail",
+                "error" => "Not implemented"
+            ]);
+            exit();
             break;
 
         case 'delete_message':
+            echo json_encode([
+                "status" => "fail",
+                "error" => "Not implemented"
+            ]);
+            exit();
+            break;
+        default:
+            echo json_encode([
+                "status" => "fail",
+                "error" => "Unknown action"
+            ]);
+            exit();
             break;
     }
     
