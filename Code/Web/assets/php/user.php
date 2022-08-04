@@ -82,6 +82,24 @@ class User{
         return date("d M Y", $this->joined);
     }
 
+    public static function loadUserFromDB($db, $tag){
+        $query = $db->query("SELECT * FROM users WHERE tag='$tag'")->fetch_assoc();
+        
+        if(!$query) return null;
+
+        return new User(
+            $query['tag'],
+            $query['email'],
+            $query['nickname'],
+            $query['birthdate'],
+            $query['about_me'],
+            $query['profile_picture'],
+            $query['joined'],
+            $query['password'],
+            $db
+        );
+    }
+
     
 }
 

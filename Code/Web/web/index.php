@@ -79,6 +79,18 @@
                         $showProfileUser = $currentUser;
                         include "showProfile.php";
                         break;
+                    case 'profile':
+                        $profile = isset($_GET['profile']) ? $_GET['profile'] : $currentUser->tag;
+
+                        $showProfileUser = User::loadUserFromDB($db, $profile);
+
+                        if($showProfileUser == null){
+                            header("Location: userNotFound.html");
+                            return;
+                        }
+
+                        include "showProfile.php";
+                        break;
                 }
             ?>
         </div>
