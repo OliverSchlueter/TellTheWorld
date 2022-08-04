@@ -26,13 +26,16 @@ function generateMessage(msg) {
         return p;
     };
 
-    var getFooterItem = function(name, amount, icon, parent){
+    var getFooterItem = function(name, amount, icon, parent, onclick){
         var fi = document.createElement("p");
         fi.classList.add(name);
+        fi.onclick = onclick;
         var txt = document.createTextNode(" " + amount + " ");
         fi.appendChild(txt);
         fi.insertBefore(getIcon(icon), txt);
         parent.appendChild(fi);
+
+        return fi;
     }
 
     var getHr = function(parent) {
@@ -176,9 +179,27 @@ function generateMessage(msg) {
     var messageFooter = document.createElement("div");
     messageFooter.classList.add("message_footer");
 
-        getFooterItem("likes", msg.likes, "fa-solid fa-heart fa-xs", messageFooter);
-        getFooterItem("comments", msg.comments, "fa-solid fa-message fa-xs", messageFooter);
-        getFooterItem("reposts", msg.reposts, "fa-solid fa-rotate fa-xs", messageFooter);
+        likes = getFooterItem("likes", msg.likes, "fa-solid fa-heart fa-xs", messageFooter, () => {
+            if(likes.classList.contains("liked")){
+                likes.classList.remove("liked");
+                likes.innerHTML = likes.innerHTML.replace(msg.likes+1, msg.likes);
+                // TODO: send http request to remove like
+                return;
+            }
+
+            let http = httpRequest('POST', 'messageEndpoint.php', {
+                "action": "like_message",
+                "message_id": msg.id,
+                "timestamp": Date.now().toString()
+            });
+
+            http.onreadystatechange = () => console.log(http.responseText);
+
+            likes.classList.add("liked");
+            likes.innerHTML = likes.innerHTML.replace(msg.likes, msg.likes+1);
+        });
+        getFooterItem("comments", msg.comments, "fa-solid fa-message fa-xs", messageFooter, () => window.alert('comment'));
+        getFooterItem("reposts", msg.reposts, "fa-solid fa-rotate fa-xs", messageFooter, () => window.alert('repost'));
 
         var share = document.createElement("p");
         share.classList.add("share");

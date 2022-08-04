@@ -204,8 +204,21 @@ main{
     transition: color .15s ease-in-out;
 }
 
-.message .message_footer .likes:hover, .message .message_footer .likes:hover i{
+.message .message_footer .likes:hover, 
+.message .message_footer .likes:hover i,
+.message .message_footer .likes.liked,
+.message .message_footer .likes.liked i{
     color: var(--color-red);
+}
+
+.message .message_footer .likes.liked i{
+    animation: like_animation 0.2s;
+}
+
+@keyframes like_animation {
+    0% { font-size: 1em; }
+    50% { font-size: 1.05em; }
+    100% { font-size: 1em; }
 }
 
 .message .message_footer .comments:hover, .message .message_footer .comments:hover i, 
