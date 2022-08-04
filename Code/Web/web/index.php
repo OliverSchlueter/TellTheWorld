@@ -49,7 +49,7 @@
         <ul>
             <?php 
                 if($logged_in && strlen($currentUser->profilePicturePath) > 0){
-                    echo '<li><img class="profile_picture" id="profile_picture" src="..'.$currentUser->profilePicturePath.'"></li>';
+                    echo '<li><a href="./?site=my_profile"><img class="profile_picture" id="profile_picture" src="..'.$currentUser->profilePicturePath.'"></a></li>';
                 } else {
                     echo '<li><img class="profile_picture" id="profile_picture" src="../assets/img/logo.png"></li>';
                 }
@@ -168,7 +168,7 @@
                 <option value="#TellTheWorld">
                 <option value="Beta account">
             </datalist>
-            <input type="search" name="search_input" placeholder="Search for users or hashtags" list="search_history">
+            <input type="search" name="search_input" placeholder="Search for users or hashtags" list="search_history" onclick="showSnackbar('The search feature is still under development')">
         </form>
     </section>
 </body>

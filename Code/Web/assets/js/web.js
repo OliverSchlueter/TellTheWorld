@@ -198,12 +198,21 @@ function generateMessage(msg) {
             likes.classList.add("liked");
             likes.innerHTML = likes.innerHTML.replace(msg.likes, msg.likes+1);
         });
-        getFooterItem("comments", msg.comments, "fa-solid fa-message fa-xs", messageFooter, () => window.alert('comment'));
-        getFooterItem("reposts", msg.reposts, "fa-solid fa-rotate fa-xs", messageFooter, () => window.alert('repost'));
+
+        getFooterItem("comments", msg.comments, "fa-solid fa-message fa-xs", messageFooter, () => {
+            showSnackbar("This feature is still under development")
+        });
+
+        getFooterItem("reposts", msg.reposts, "fa-solid fa-rotate fa-xs", messageFooter, () => {
+            showSnackbar("This feature is still under development")
+        });
 
         var share = document.createElement("p");
         share.classList.add("share");
         share.appendChild(getIcon("fa-solid fa-share-from-square fa-xs"));
+        share.onclick = () => {
+            showSnackbar("This feature is still under development")
+        }
         messageFooter.appendChild(share);
 
     message.appendChild(messageFooter);
@@ -326,19 +335,4 @@ document.getElementById("writeSend").onclick = function(e){
 document.getElementById("writeClear").onclick = function(e){
     document.getElementById("writeText").value = "";
     updatePreviewText("");
-}
-
-
-function showSnackbar(text){
-    var snackbar = document.createElement("div");
-    snackbar.classList.add("snackbar");
-    var snackbarText = document.createElement("p");
-    snackbarText.innerText = text;
-    snackbar.appendChild(snackbarText);
-
-    document.body.appendChild(snackbar);
-
-    snackbar.classList.add("show");
-
-    setTimeout(() => snackbar.remove(), 3500);
 }

@@ -57,7 +57,7 @@ dialog .hideBtn:hover{
 
 .snackbar{
     /* visibility: hidden; */
-    background-color: var(--background-color2);
+    background-color: var(--background-color3);
     text-align: center;
     padding: 10px;
     border-radius: 10px;
