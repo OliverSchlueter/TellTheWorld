@@ -16,7 +16,9 @@ public class TellTheWorldApi {
         this.logger = logger;
         this.databaseInformation = databaseInformation;
         this.database = new Database(databaseInformation);
+    }
 
+    public void connectDatabase(){
         if(!database.connect()){
             TellTheWorldApiApplication.getAppContext().close();
         }

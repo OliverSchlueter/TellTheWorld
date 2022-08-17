@@ -17,6 +17,7 @@ public class TellTheWorldApiApplication {
 		appContext =  SpringApplication.run(TellTheWorldApiApplication.class, args);
 		//TODO: save database information in a config file
 		instance = new TellTheWorldApi(Logger.getGlobal(), new DatabaseInformation("localhost", "3306", "root", "", "telltheworld"));
+		instance.connectDatabase();
 	}
 
 	public static TellTheWorldApi getInstance() {
