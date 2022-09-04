@@ -102,13 +102,15 @@
                         echo "<script>
                         generateMessage({
                             id: '".$msg->id."',
+                            author_tag: '".$currentUser->tag."',
                             author: '".$currentUser->nickname."',
                             profile_picture: '".$currentUser->profilePicturePath."',
                             time: ".$msg->timeSent.",
                             content: \"".str_replace("\n", "<br>", $msg->content)."\",
                             likes: ".$msg->amountLikes.",
                             comments: ".$msg->amountComments.",
-                            reposts: 0
+                            reposts: 0,
+                            liked: ".$currentUser->hasLikedMessage($msg->id)."
                         });
                         </script>";
                     }

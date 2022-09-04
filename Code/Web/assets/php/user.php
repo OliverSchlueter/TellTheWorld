@@ -42,8 +42,9 @@ class User{
     var $followers;
     var $following;
     var $messages;
+    var $likedMessages;
 
-    public function __construct($tag, $email, $nickname, $birthdate, $aboutMe, $profilePicturePath, $joined, $passwordHash, $db) {
+    public function __construct($tag, $email, $nickname, $birthdate, $aboutMe, $profilePicturePath, $joined, $passwordHash) {
         $this->tag = $tag;
         $this->email = $email;
         $this->nickname = $nickname;
@@ -55,34 +56,58 @@ class User{
         $this->followers = [];
         $this->following = [];
         $this->messages = [];
+        $this->likedMessages = [];
 
-        foreach($db->query("SELECT * FROM user_follows_user WHERE user_tag='$tag'") as $row){
-            array_push($this->following, $row['follower_tag']);
-        }
+        // foreach($db->query("SELECT * FROM user_follows_user WHERE user_tag='$tag'") as $row){
+        //     array_push($this->following, $row['follower_tag']);
+        // }
 
-        foreach($db->query("SELECT * FROM user_follows_user WHERE follower_tag='$tag'") as $row){
-            array_push($this->followers, $row['user_tag']);
-        }
+        // foreach($db->query("SELECT * FROM user_follows_user WHERE follower_tag='$tag'") as $row){
+        //     array_push($this->followers, $row['user_tag']);
+        // }
 
-        foreach($db->query("SELECT * FROM messages WHERE sender_tag='$tag' ORDER BY time_sent LIMIT 20") as $row){
+        $this->loadMessages();
+        $this->loadLikedMessages();
+    }
+
+    public function loadMessages(){
+        include "database.php";
+
+        foreach($db->query("SELECT * FROM messages WHERE sender_tag='$this->tag' ORDER BY time_sent LIMIT 20") as $row){
             $msg = new Message(
                 $row['id'],
                 $row['time_sent'],
                 $row['sender_tag'],
                 $row['content'],
                 $row['amount_likes'],
-                $row['amount_comments'],
+                $row['amount_comments']
             );
 
             array_push($this->messages, $msg);
         }
     }
 
+    public function loadLikedMessages(){
+        include "database.php";
+
+        foreach($db->query("SELECT * FROM user_likes_message WHERE user_tag='$this->tag'") as $row){
+            array_push($this->likedMessages, $row["message_id"]);
+        }
+    }
+
+    public function hasLikedMessage($msgId){
+        foreach ($this->likedMessages as $m) {
+            if($m == $msgId) return true;
+        }
+
+        return false;
+    }
+
     public function joinedFormated() {
         return date("d M Y", $this->joined);
     }
 
-    public static function loadUserFromDB($db, $tag){
+    public static function loadUserFromDB($tag){
         $query = $db->query("SELECT * FROM users WHERE tag='$tag'")->fetch_assoc();
         
         if(!$query) return null;
@@ -96,7 +121,6 @@ class User{
             $query['profile_picture'],
             $query['joined'],
             $query['password'],
-            $db
         );
     }
 

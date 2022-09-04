@@ -80,6 +80,7 @@ function generateMessage(msg) {
     message.appendChild(dialogContainer);
 
     var profilePicture = document.createElement("img");
+    profilePicture.onclick = () => window.open("./?site=profile&profile=" + msg.author_tag.replace("#", "%23"), "_self")
     profilePicture.classList.add("profile_picture");
     if((msg.profile_picture + "").length > 0) profilePicture.src = "../" + USER_PROFILE_PICTURE_PATH;   
     else profilePicture.src = "../assets/img/logo.png";
@@ -125,31 +126,31 @@ function generateMessage(msg) {
         }
 
         var result = "";
-        
-        if(years > 0){
-            result = years + " years";
-        }
 
-        if(months > 0){
-            result = months + " months";
-        }
-
-        if(weeks > 0){
-            result = weeks + " weeks";
-        }
-
-        if(days > 0){
-            result = days + " days";
+        if(minutes > 0){
+            result = minutes + " minutes";
         }
 
         if(hours > 0){
             result = hours + " hours";
         }
 
-        if(minutes > 0){
-            result = minutes + " minutes";
+        if(days > 0){
+            result = days + " days";
         }
 
+        if(weeks > 0){
+            result = weeks + " weeks";
+        }
+
+        if(months > 0){
+            result = months + " months";
+        }
+
+        if(years > 0){
+            result = years + " years";
+        }
+        
         if(minutes == 0){
             if(seconds < 5){
                 return "now";
@@ -164,7 +165,8 @@ function generateMessage(msg) {
     var messageHeader = document.createElement("div");
     messageHeader.classList.add("message_header");
 
-        getP("author", msg.author, messageHeader);
+        var author = getP("author", msg.author, messageHeader);
+        author.onclick = () => window.open("./?site=profile&profile=" + msg.author_tag.replace("#", "%23"), "_self")
         getP("time", formatTime(msg.time), messageHeader);
 
         var more = document.createElement("p");
@@ -182,7 +184,7 @@ function generateMessage(msg) {
         likes = getFooterItem("likes", msg.likes, "fa-solid fa-heart fa-xs", messageFooter, () => {
             if(likes.classList.contains("liked")){
                 likes.classList.remove("liked");
-                likes.innerHTML = likes.innerHTML.replace(msg.likes+1, msg.likes);
+                likes.innerHTML = likes.innerHTML.replace(msg.likes, msg.likes-1);
                 // TODO: send http request to remove like
                 return;
             }
@@ -198,6 +200,9 @@ function generateMessage(msg) {
             likes.classList.add("liked");
             likes.innerHTML = likes.innerHTML.replace(msg.likes, msg.likes+1);
         });
+
+        if(msg.liked)
+            likes.classList.add("liked");
 
         getFooterItem("comments", msg.comments, "fa-solid fa-message fa-xs", messageFooter, () => {
             showSnackbar("This feature is still under development")
